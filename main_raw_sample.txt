@@ -1,0 +1,201 @@
+AbsenceAdmin_ST                                                                  ~~ ABMImportExport_ST                                                                                   ~~ TMDEV          ~~
+ABMImportExport_ST is a SecurityClass
+    description is "This security class grants unconditional access to Absence Management import and export business classes"
+
+    Access Rights
+
+        EmployeeBalanceExport BusinessClass
+            is accessible
+                for all actions
+                unconditionally
+
+        GeneralLedgerExport BusinessClass
+            is accessible
+                for all actions
+                unconditionally
+
+        AbsenceManagement Module
+            is accessible
+                for all actions
+                unconditionally
+
+
+AbsenceAdmin_ST                                                                  ~~ ABMProcessing_ST                                                                                     ~~ TMDEV          ~~
+ABMProcessing_ST is a SecurityClass
+    description is "This security class grants access to Absence Management transactional processing business classes. Actions cannot be taken on the employee's own records, however."
+
+    Access Rights
+
+        LeaveOfAbsence BusinessClass
+            is accessible
+                for all actions
+                when  (Employee.IsNotEmployee)
+            is accessible
+                for all inquiries
+                unconditionally
+
+        TemporaryGeneralLedgerPosting BusinessClass
+            is accessible
+                for all actions
+                when  (Employee.IsNotEmployee)
+           
+
+        EmployeeTransactionSummary BusinessClass
+            is accessible
+                for all actions
+                when  (Employee.IsNotEmployee)
+           
+
+        TimeOffRequest BusinessClass
+            is accessible
+                for all actions
+                when  (Employee.IsNotEmployee)
+            is accessible
+                for all inquiries
+                unconditionally
+
+        TemporaryEmployeeAbsencePlanDates BusinessClass
+            is accessible
+                for all actions
+                when  (Employee.IsNotEmployee)
+            is accessible
+                for all inquiries
+                unconditionally
+
+        EmployeeAbsenceTransaction BusinessClass
+            is accessible
+                for all actions
+                when  (Employee.IsNotEmployee)
+            is accessible
+                for all inquiries
+                unconditionally
+
+        EmployeeAbsenceHoursAllocation BusinessClass
+            is accessible
+                for all actions
+                when  (Employee.IsNotEmployee)
+            is accessible
+                for all inquiries
+                unconditionally
+            is accessible
+                for all inquiries
+                unconditionally
+    
+
+        TemporaryEmployeeLengthOfServiceHours BusinessClass
+            is accessible
+                for all actions
+                when  (Employee.IsNotEmployee)
+            is accessible
+                for all inquiries
+                unconditionally
+
+        EmployeeLengthOfServiceHours BusinessClass
+            is accessible
+                for all actions
+                when  (Employee.IsNotEmployee)
+            is accessible
+                for all inquiries
+                unconditionally
+
+        Employee BusinessClass
+            is accessible
+                for all inquiries, FindDatesWithinStructureGroup, CheckForNewAbsenceEnrollments, EmployeeAbsencePlanAdd
+                when  (IsNotEmployee)
+            is accessible
+                for all inquiries
+                unconditionally
+            is accessible
+                for all inquiries, FindDatesWithinStructureGroup, CheckForNewAbsenceEnrollments, EmployeeAbsencePlanAdd
+                when  (IsNotEmployee)
+            is accessible
+                for all actions
+                when  (BusinessClass = "EmployeeAbsenceTransaction" or BusinessClass = "EmployeeAbsencePlan")
+
+        EmployeeAbsencePlan BusinessClass
+            is accessible
+                for all actions
+                when  (Employee.IsNotEmployee)
+            is not accessible
+                for all inquiries
+                unconditionally
+
+        AnalyticCube BusinessClass
+            is accessible
+                for all actions
+                when  (BusinessClass = "EmployeeAbsenceTransaction" or BusinessClass = "EmployeeAbsencePlan")
+
+AbsenceAdmin_ST                                                                  ~~ ActorInquiryAccess_ST                                                                                ~~ TMDEV          ~~
+ActorInquiryAccess_ST is a SecurityClass
+    description is ""
+
+    Access Rights
+
+        All Fields for Actor BusinessClass
+            excluding
+                Actor,
+                PersonName
+            is not accessible
+                for all actions
+                unconditionally
+
+        Actor BusinessClass
+            is accessible
+                for all inquiries
+                unconditionally
+        async Module
+            is accessible
+                for all actions
+                unconditionally
+
+        EnpPersonalObject KeyField
+            grants access
+                to all ontology
+                for all actions
+                when  (EnpPersonalObject.create stamp.actor = actor)
+
+        ReportDocument KeyField
+            grants access
+                to all ontology
+                for all actions
+                    excluding
+                        PurgeFolderDocuments, PurgeDocuments
+                when  (ReportDocument.create stamp.actor = authenticated actor)
+
+        EffectiveDatedGroup KeyField
+            grants access
+                to all ontology
+                for all actions
+                when  (EffectiveDatedGroup.create stamp.actor = actor)
+
+        AsyncQueueDefinition KeyField
+            grants access
+                to all ontology
+                for all inquiries
+                unconditionally
+
+        UserNotification KeyField
+            grants access
+                to all ontology
+                for all actions
+                    excluding
+                        PurgeNotificationsForActor, PurgeNotifications
+                when  (UserNotification.Actor = actor)
+
+        ProfileLog KeyField
+            grants access
+                to all ontology
+                for all actions
+                unconditionally
+
+        AsyncActionRequest KeyField
+            grants access
+                to all ontology
+                for all actions
+                when  (AsyncActionRequest.Actor = actor)
+
+        ReportPrintFile KeyField
+            grants access
+                to all ontology
+                for all actions
+                when  (ReportPrintFile.create stamp.actor = authenticated actor)

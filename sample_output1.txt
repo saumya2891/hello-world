@@ -1,0 +1,26 @@
+Role|Data Area|Security Class|Securable Object|Securable Object Name|Field(s)|Access Rights|Accessible Action(s)|Condition(s)
+AbsenceAdmin_ST|TMDEV|ABMImportExport_ST|BusinessClass|EmployeeBalanceExport||is accessible|all actions|Unconditionally
+AbsenceAdmin_ST|TMDEV|ABMImportExport_ST|BusinessClass|GeneralLedgerExport||is accessible|all actions|Unconditionally
+AbsenceAdmin_ST|TMDEV|ABMImportExport_ST|Module|AbsenceManagement||is accessible|all actions|Unconditionally
+AbsenceAdmin_ST|TMDEV|ABMProcessing_ST|BusinessClass|LeaveOfAbsence||is accessible|all actions|(Employee.IsNotEmployee)
+AbsenceAdmin_ST|TMDEV|ABMProcessing_ST|BusinessClass|LeaveOfAbsence||is accessible|all inquiries|Unconditionally
+AbsenceAdmin_ST|TMDEV|ABMProcessing_ST|BusinessClass|TemporaryGeneralLedgerPosting||is accessible|all actions|(Employee.IsNotEmployee)
+AbsenceAdmin_ST|TMDEV|ABMProcessing_ST|BusinessClass|EmployeeTransactionSummary||is accessible|all actions|(Employee.IsNotEmployee)
+AbsenceAdmin_ST|TMDEV|ABMProcessing_ST|BusinessClass|TimeOffRequest||is accessible|all actions|(Employee.IsNotEmployee)
+AbsenceAdmin_ST|TMDEV|ABMProcessing_ST|BusinessClass|TimeOffRequest||is accessible|all inquiries|Unconditionally
+AbsenceAdmin_ST|TMDEV|ABMProcessing_ST|BusinessClass|TemporaryEmployeeAbsencePlanDates||is accessible|all actions|(Employee.IsNotEmployee)
+AbsenceAdmin_ST|TMDEV|ABMProcessing_ST|BusinessClass|TemporaryEmployeeAbsencePlanDates||is accessible|all inquiries|Unconditionally
+AbsenceAdmin_ST|TMDEV|ABMProcessing_ST|BusinessClass|EmployeeAbsenceTransaction||is accessible|all actions|(Employee.IsNotEmployee)
+AbsenceAdmin_ST|TMDEV|ABMProcessing_ST|BusinessClass|EmployeeAbsenceTransaction||is accessible|all inquiries|Unconditionally
+AbsenceAdmin_ST|TMDEV|ABMProcessing_ST|BusinessClass|EmployeeAbsenceHoursAllocation||is accessible|all actions|(Employee.IsNotEmployee)
+AbsenceAdmin_ST|TMDEV|ABMProcessing_ST|BusinessClass|EmployeeAbsenceHoursAllocation||is accessible|all inquiries|Unconditionally
+AbsenceAdmin_ST|TMDEV|ABMProcessing_ST|BusinessClass|EmployeeAbsenceHoursAllocation||is accessible|all inquiries|Unconditionally
+AbsenceAdmin_ST|TMDEV|ABMProcessing_ST|BusinessClass|TemporaryEmployeeLengthOfServiceHours||is accessible|all actions|(Employee.IsNotEmployee)
+AbsenceAdmin_ST|TMDEV|ABMProcessing_ST|BusinessClass|TemporaryEmployeeLengthOfServiceHours||is accessible|all inquiries|Unconditionally
+AbsenceAdmin_ST|TMDEV|ABMProcessing_ST|BusinessClass|EmployeeLengthOfServiceHours||is accessible|all actions|(Employee.IsNotEmployee)
+AbsenceAdmin_ST|TMDEV|ABMProcessing_ST|BusinessClass|EmployeeLengthOfServiceHours||is accessible|all inquiries|Unconditionally
+AbsenceAdmin_ST|TMDEV|ABMProcessing_ST|BusinessClass|Employee||is accessible|all inquiries, FindDatesWithinStructureGroup, CheckForNewAbsenceEnrollments, EmployeeAbsencePlanAdd|(IsNotEmployee)
+AbsenceAdmin_ST|TMDEV|ABMProcessing_ST|BusinessClass|Employee||is accessible|all inquiries|Unconditionally
+AbsenceAdmin_ST|TMDEV|ABMProcessing_ST|BusinessClass|EmployeeAbsencePlan||is accessible|all actions|(Employee.IsNotEmployee)
+AbsenceAdmin_ST|TMDEV|ABMProcessing_ST|BusinessClass|EmployeeAbsencePlan||is accessible|all inquiries|Unconditionally
+AbsenceAdmin_ST|TMDEV|ABMProcessing_ST|BusinessClass|AnalyticCube||is accessible|all actions|(BusinessClass = "EmployeeAbsenceTransaction" or BusinessClass = "EmployeeAbsencePlan")
